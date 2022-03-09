@@ -38,6 +38,8 @@ namespace TovutiAPI.Repository
         public Invoices GetInvoice(long id) =>
             _context.invoices.FirstOrDefault(p => p.id.Equals(id));
 
+     
+
         public async Task UpdateInvoice(Invoices invoices, Invoices dBinvoices)
         {
             dBinvoices.payment_terms = invoices.payment_terms;
@@ -45,6 +47,11 @@ namespace TovutiAPI.Repository
             dBinvoices.amount = invoices.amount;
             dBinvoices.due_date = invoices.due_date;
             await _context.SaveChangesAsync();
+        }
+        public async Task<IEnumerable<Invoices>> GetInvoiceByCustomerId(long id)
+        {
+            //get whole list 
+            return await _context.invoices.Where(r=>r.customer_id == id).ToListAsync();
         }
     }
 }

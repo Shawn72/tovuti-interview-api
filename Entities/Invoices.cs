@@ -11,6 +11,6 @@ namespace TovutiAPI.Entities
         public DateTime transaction_date { get; set; }
         public DateTime due_date { get; set; }
         public decimal amount { get; set; }
-        public string user_id { get; set; }
+        public Int64 customer_id { get; set; }
     }
 }

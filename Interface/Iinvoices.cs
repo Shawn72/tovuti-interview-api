@@ -9,6 +9,7 @@ namespace TovutiAPI.Interface
     {
         Task CreateInvoice(Invoices invoices);
         Invoices GetInvoice(Int64 id);
+        Task<IEnumerable<Invoices>> GetInvoiceByCustomerId(Int64 id);
         Task<IEnumerable<Invoices>> GetAllInvoices();
         Task UpdateInvoice(Invoices invoices, Invoices dBinvoices);
         Task DeleteInvoice(Invoices invoices);

@@ -47,7 +47,7 @@ namespace TovutiAPI.Auths
         public static bool IsAuthorizedUser(string Username, string Password)
         {
             // In this method we can handle our database logic here...  
-            return Username == "shawn72" && Password == "@950Cherry*30";
+            return Username == "shawn72" && Password == "2950Cherry*30";
         }
     }
 }

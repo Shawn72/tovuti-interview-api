@@ -7,7 +7,10 @@ namespace TovutiAPI.Entities
     {
         [Key]
         public Int64 id { get; set; }
-        public string user_id { get; set; }
+        public string firstname { get; set; }
+        public string middlename { get; set; }
+        public string lastname { get; set; }
+        public string id_number { get; set; }      
         public decimal credit_limit { get; set; } 
         public string payment_terms { get; set; }     
     }

@@ -11,7 +11,6 @@ namespace TovutiAPI.Repository
     public class SalesTransactionsRepository:ISalesTransactions
     {
         private readonly DatabaseContext _context;
-
         public SalesTransactionsRepository(DatabaseContext context)
         {
             _context = context;
@@ -35,7 +34,7 @@ namespace TovutiAPI.Repository
             return await _context.sale_transactions.ToListAsync();
         }
 
-        public SalesTransactions GetSalesTransactiont(long id) =>
+        public SalesTransactions GetSalesTransaction(long id) =>
             _context.sale_transactions.FirstOrDefault(p => p.id.Equals(id));
 
         public async Task UpdateSalesTransaction(SalesTransactions salesTransactions, SalesTransactions dBsalesTransactions)

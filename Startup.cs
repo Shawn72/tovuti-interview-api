@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TovutiAPI.Auths;
 using TovutiAPI.DBContexts;
 using TovutiAPI.Interface;
 using TovutiAPI.Models;
@@ -49,8 +51,10 @@ namespace TovutiAPI
             services.AddScoped<ICustomerAccounts, CustomerAccountRepository>();
             services.AddScoped<Iinvoices, InvoicesRepository>();
             services.AddScoped<ISalesTransactions, SalesTransactionsRepository>();
+            services.AddScoped<IRoles, RolesRepository>();
 
             services.AddControllers();
+            services.AddControllersWithViews();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TovutiAPI", Version = "v1" });
@@ -64,6 +68,9 @@ namespace TovutiAPI
                 .AllowAnyMethod()
                 .WithExposedHeaders("X-Pagination"));
             });
+            // configure basic authentication 
+            //services.AddAuthentication("BasicAuthentication")
+            //    .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHelper>("BasicAuthentication", null);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,6 +82,8 @@ namespace TovutiAPI
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
+            app.UseAuthentication();
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
@@ -83,6 +92,7 @@ namespace TovutiAPI
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
             });
+
         }
     }
 }

@@ -19,8 +19,8 @@ namespace TovutiAPI.DBContexts
         public DbSet<CustomerAccounts> customer_accounts { get; set; }
         public DbSet<Invoices> invoices { get; set; }
         public DbSet<SalesTransactions> sale_transactions { get; set; }
-        //public DbSet<RoleModel> aspnetuserroles { get; set; }
-        //public DbSet<UserModel> aspnetusers { get; set; }
+        public DbSet<RoleModel> aspnetuserroles { get; set; }
+        public DbSet<UserModel> aspnetusers { get; set; }
 
     }
 }

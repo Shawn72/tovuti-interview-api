@@ -10,7 +10,7 @@ namespace TovutiAPI.Controllers
 {
     [BasicAuthentication]
     [ApiController]
-    [Route("api/customerdetails")]
+    [Route("api/Customers")]
     public class CustomerDetailsController : ControllerBase
     { 
         private readonly ICustomerDetails _repo;        
@@ -33,7 +33,7 @@ namespace TovutiAPI.Controllers
             }
         }  
 
-        [HttpPost("createcstdetails")]
+        [HttpPost("RegisterCustomer")]
         public async Task<IActionResult> CreateCustomerDetails([FromBody] CustomerDetails customerdetails)
         {
             if (customerdetails == null)
