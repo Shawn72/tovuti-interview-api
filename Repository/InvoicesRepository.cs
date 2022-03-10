@@ -36,9 +36,7 @@ namespace TovutiAPI.Repository
         }
 
         public Invoices GetInvoice(long id) =>
-            _context.invoices.FirstOrDefault(p => p.id.Equals(id));
-
-     
+            _context.invoices.FirstOrDefault(p => p.id.Equals(id));    
 
         public async Task UpdateInvoice(Invoices invoices, Invoices dBinvoices)
         {
@@ -52,6 +50,11 @@ namespace TovutiAPI.Repository
         {
             //get whole list 
             return await _context.invoices.Where(r=>r.customer_id == id).ToListAsync();
+        }
+        public async Task<IEnumerable<Invoices>> GetUnPaidInvoicesByCustomer(long customerId)
+        {
+            //raw MySQL statement in EF core
+            return await _context.invoices.FromSqlRaw("select * from invoices where fully_paid=false and customer_id=" + customerId).ToListAsync();
         }
     }
 }

@@ -12,5 +12,6 @@ namespace TovutiAPI.Interface
         Task<IEnumerable<CustomerAccounts>> GetAllCustomerAccounts();
         Task UpdateCustomerAccount(CustomerAccounts cstmAccount, CustomerAccounts dBcstmAccount);
         Task DeleteCustomerAccount(CustomerAccounts cstmAccount);
+        Task<IEnumerable<CustomerAccounts>> GetAccountsByCustomerId(Int64 customerId);
     }
 }

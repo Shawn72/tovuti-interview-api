@@ -44,7 +44,14 @@ namespace TovutiAPI.Controllers
         }
 
         [HttpGet("{customerId}")]
-        public IActionResult GetCustomerAccount(Int64 id)
+        public async Task<ActionResult> GetCustomerAccountsList(Int64 customerId)
+        {
+            var account =  await _repo.GetAccountsByCustomerId(customerId);
+            return Ok(account);
+        }
+
+        [HttpGet("account/{id}")]
+        public ActionResult GetCustomerAccountsDetails(Int64 id)
         {
             var account = _repo.GetCustomerAccount(id);
             return Ok(account);

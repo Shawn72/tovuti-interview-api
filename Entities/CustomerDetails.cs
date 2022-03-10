@@ -10,7 +10,8 @@ namespace TovutiAPI.Entities
         public string firstname { get; set; }
         public string middlename { get; set; }
         public string lastname { get; set; }
-        public string id_number { get; set; }      
+        public string id_number { get; set; }
+        public string email { get; set; }
         public decimal credit_limit { get; set; } 
         public string payment_terms { get; set; }     
     }

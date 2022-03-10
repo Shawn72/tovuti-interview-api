@@ -10,7 +10,7 @@ namespace TovutiAPI.Controllers
 { 
     [BasicAuthentication]
     [ApiController]
-    [Route("api/saletranx")]
+    [Route("api/Sale")]
     public class SaleTransactionsController : ControllerBase
     {
         private readonly ISalesTransactions _repo;
@@ -34,7 +34,7 @@ namespace TovutiAPI.Controllers
             }
         }
 
-        [HttpPost("createsaletranx")]
+        [HttpPost("MakeSale")]
         public async Task<IActionResult> CreateSaleTransaction([FromBody] SalesTransactions saletrx)
         {
             if (saletrx == null)
@@ -68,6 +68,17 @@ namespace TovutiAPI.Controllers
             if (saletrx == null)
                 return NotFound();
             await _repo.DeleteSalesTransaction(saletrx);
+            return Ok();
+        }
+
+        [HttpPut("ReverseSale/{id}")]
+        public async Task<IActionResult> ReverseSaleTransaction(Int64 id, [FromBody] SalesTransactions saletrx)
+        {
+            // additional product and model validation checks
+            var dbSaletrx = _repo.GetSalesTransaction(id);
+            if (dbSaletrx == null)
+                return NotFound();
+            await _repo.ReverseSalesTransaction(saletrx, dbSaletrx);
             return Ok();
         }
     }

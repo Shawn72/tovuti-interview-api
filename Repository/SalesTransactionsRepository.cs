@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,6 +37,17 @@ namespace TovutiAPI.Repository
 
         public SalesTransactions GetSalesTransaction(long id) =>
             _context.sale_transactions.FirstOrDefault(p => p.id.Equals(id));
+
+       
+
+        public async Task ReverseSalesTransaction(SalesTransactions salesTransactions,SalesTransactions dBsalesTransactions)
+        {
+            dBsalesTransactions.product_amount = salesTransactions.product_amount; // 0;
+            dBsalesTransactions.price = salesTransactions.price; // 0;
+            dBsalesTransactions.reversed = salesTransactions.reversed; //true;
+            await _context.SaveChangesAsync();
+        }
+
 
         public async Task UpdateSalesTransaction(SalesTransactions salesTransactions, SalesTransactions dBsalesTransactions)
         {

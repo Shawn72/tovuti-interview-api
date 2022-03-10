@@ -12,5 +12,7 @@ namespace TovutiAPI.Interface
         Task<IEnumerable<SalesTransactions>> GetAllSalesTransactions();
         Task UpdateSalesTransaction(SalesTransactions salesTransactions, SalesTransactions dBsalesTransactions);
         Task DeleteSalesTransaction(SalesTransactions salesTransactions);
+
+        Task ReverseSalesTransaction(SalesTransactions salesTransactions, SalesTransactions dBsalesTransactions);
     }
 }

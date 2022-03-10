@@ -28,7 +28,7 @@ namespace TovutiAPI.Controllers
             {
                 return Ok(await _repo.GetAllInvoices());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Error retrieving data from the database");
@@ -45,16 +45,23 @@ namespace TovutiAPI.Controllers
         }
 
         [HttpGet("{InvoiceId}")]
-        public IActionResult GetInvoice(Int64 id)
+        public IActionResult GetInvoice(Int64 InvoiceId)
         {
-            var invoice = _repo.GetInvoice(id);
+            var invoice = _repo.GetInvoice(InvoiceId);
             return Ok(invoice);
         }
 
-        [HttpGet("{customerId}")]
-        public IActionResult GetInvoiceByCustomer(Int64 id)
+        [HttpGet("CustomerInvoices/{customerId}")]
+        public async Task<IActionResult> GetInvoiceByCustomer(Int64 customerId)
         {
-            var invoices = _repo.GetInvoiceByCustomerId(id);
+            var invoices =  await _repo.GetInvoiceByCustomerId(customerId);
+            return Ok(invoices);
+        }
+
+        [HttpGet("UnPaidInvoices/{customerId}")]
+        public async Task<IActionResult> GetUnsettledInvoiceByCustomer(Int64 customerId)
+        {
+            var invoices = await _repo.GetUnPaidInvoicesByCustomer(customerId);
             return Ok(invoices);
         }
 

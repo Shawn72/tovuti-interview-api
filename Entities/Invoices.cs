@@ -12,5 +12,7 @@ namespace TovutiAPI.Entities
         public DateTime due_date { get; set; }
         public decimal amount { get; set; }
         public Int64 customer_id { get; set; }
+        public Int64 sale_trx_id { get; set; }
+        public bool fully_paid { get; set; }  
     }
 }

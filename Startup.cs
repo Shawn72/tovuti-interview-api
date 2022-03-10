@@ -52,6 +52,7 @@ namespace TovutiAPI
             services.AddScoped<Iinvoices, InvoicesRepository>();
             services.AddScoped<ISalesTransactions, SalesTransactionsRepository>();
             services.AddScoped<IRoles, RolesRepository>();
+            services.AddScoped<IinvoicePayment, InvoicePaymentRepository>();
 
             services.AddControllers();
             services.AddControllersWithViews();
